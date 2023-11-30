@@ -7,6 +7,7 @@
 #include "Components/CapsuleComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "PrototypesGameMode.h"
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -69,6 +70,11 @@ void APrototypesCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 
 		//Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &APrototypesCharacter::Look);
+
+		//Save system
+		EnhancedInputComponent->BindAction(SaveAction, ETriggerEvent::Started, this , &APrototypesCharacter::SaveGame);
+		EnhancedInputComponent->BindAction(LoadAction, ETriggerEvent::Started, this , &APrototypesCharacter::LoadGame);
+
 	}
 }
 
@@ -107,4 +113,18 @@ void APrototypesCharacter::SetHasRifle(bool bNewHasRifle)
 bool APrototypesCharacter::GetHasRifle()
 {
 	return bHasRifle;
+}
+
+void APrototypesCharacter::SaveGame()
+{
+	APrototypesGameMode* GamemodeRef = Cast<APrototypesGameMode>(GetWorld()->GetAuthGameMode());
+	GamemodeRef->SaveGame();
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Game Saved"));
+
+}
+
+void APrototypesCharacter::LoadGame()
+{
+	APrototypesGameMode* GamemodeRef = Cast<APrototypesGameMode>(GetWorld()->GetAuthGameMode());
+	GamemodeRef->LoadGame();
 }

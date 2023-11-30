@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
+#include "Core/PrototypeSaveGame.h"
 #include "PrototypesCharacter.generated.h"
 
 class UInputComponent;
@@ -39,6 +40,13 @@ class APrototypesCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	class UInputAction* MoveAction;
 
+	/** Save Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	class UInputAction* SaveAction;
+
+	/** Load Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	class UInputAction* LoadAction;
 	
 public:
 	APrototypesCharacter();
@@ -70,6 +78,12 @@ protected:
 
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
+
+	void SaveGame();
+
+	void LoadGame();
+
+
 
 protected:
 	// APawn interface

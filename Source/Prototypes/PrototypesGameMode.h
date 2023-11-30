@@ -13,6 +13,15 @@ class APrototypesGameMode : public AGameModeBase
 
 public:
 	APrototypesGameMode();
+
+	//Save game funciton
+	void SaveGame();
+
+	//Load game function
+	void LoadGame();
+
+	//Create save file
+	void CreateSaveFile();
 };
 
 
