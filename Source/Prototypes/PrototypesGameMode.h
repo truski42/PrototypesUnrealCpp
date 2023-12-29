@@ -23,6 +23,3 @@ public:
 	//Create save file
 	void CreateSaveFile();
 };
-
-
-

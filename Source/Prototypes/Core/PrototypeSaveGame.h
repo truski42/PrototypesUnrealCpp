@@ -37,13 +37,6 @@ struct FPlayerSaveData
 	GENERATED_BODY()
 
 public:
-	FPlayerSaveData()
-	{
-		Location = FVector::ZeroVector;
-		Rotation = FRotator::ZeroRotator;
-		bResumeAtTransform = true;
-	}
-
 	UPROPERTY()
 	FString PlayerID;
 	
@@ -58,6 +51,9 @@ public:
 	/* We don't always want to restore location, and may just resume player at specific respawn point in world. */
 	UPROPERTY()
 	bool bResumeAtTransform;
+
+	UPROPERTY()
+	TArray<uint8> ByteData;
 };
 
 
